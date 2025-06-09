@@ -24,14 +24,14 @@ fn main() {
     }
 }
 
-fn draw_gen(world: &Vec<char>) {
+fn draw_gen(world: &[char]) {
     // Convert into one big string. This should autowrap
     let world_string: String = world.iter().collect();
     print!("{esc}c", esc = 27 as char);
     print!("{}", world_string);
 }
 
-fn build_gen(rows: i16, cols: i16, current_gen: &Vec<char>) -> Vec<char> {
+fn build_gen(rows: i16, cols: i16, current_gen: &[char]) -> Vec<char> {
     let mut next_gen: Vec<char> = vec![];
     for i in 0..(rows * cols) {
         next_gen.push(if current_gen.is_empty() {
@@ -57,7 +57,7 @@ fn build_gen(rows: i16, cols: i16, current_gen: &Vec<char>) -> Vec<char> {
     next_gen
 }
 
-fn get_neighbours(i: i16, rows: i16, cols: i16, current_gen: &Vec<char>) -> Vec<usize> {
+fn get_neighbours(i: i16, rows: i16, cols: i16, current_gen: &[char]) -> Vec<usize> {
     // Convert cell index to xy
     let cell_2d = (i % cols, i / cols);
 
